@@ -1,38 +1,43 @@
- import java.util.Arrays;
+
+import java.util.Collections;
+import java.util.PriorityQueue;
 
 
 public class task4 {
-   
-    public static void rotate(int[] nums, int k) {
-        if (nums == null || nums.length == 0) return;
-        
-        // Handle cases where k is greater than the array length
-        k = k % nums.length; 
-        
-        // 1. Reverse the entire array
-        reverse(nums, 0, nums.length - 1);
-        // 2. Reverse the first k elements
-        reverse(nums, 0, k - 1);
-        // 3. Reverse the remaining elements
-        reverse(nums, k, nums.length - 1);
-    }
+ 
 
-    private static void reverse(int[] nums, int start, int end) {
-        while (start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
+
+    
+    public static int findKthSmallest(int[] nums, int k) {
+        // Edge cases: check if array is empty or if k is out of bounds
+        if (nums == null || nums.length == 0 || k > nums.length || k <= 0) {
+            throw new IllegalArgumentException("Invalid array or value of k");
         }
+
+        // Create a Max-Heap using Collections.reverseOrder()
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+
+        // Process every element in the array
+        for (int num : nums) {
+            maxHeap.add(num);
+
+            // If the heap grows larger than k, remove the largest element
+            if (maxHeap.size() > k) {
+                maxHeap.poll();
+            }
+        }
+
+        // The top of the max-heap is now the k-th smallest element
+        return maxHeap.peek();
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+        int[] arr = {7, 10, 4, 3, 20, 15};
         int k = 3;
-        rotate(arr, k);
-        System.out.println("Rotated Array: " + Arrays.toString(arr));
-        // Output: [5, 6, 7, 1, 2, 3, 4]
+
+        int result = findKthSmallest(arr, k);
+        System.out.println("The " + k + "rd smallest element is: " + result);
+        // Output: 7 (The sorted sequence is 3, 4, 7, 10, 15, 20)
     }
 
 
