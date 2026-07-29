@@ -1,6 +1,6 @@
 import java.util.function.Predicate;
 
-public class SalesApp {
+public class practice {
     public static void main(String[] args) {
         
         Predicate<Double> isHighValue = amount -> amount >= 10000.0; 
