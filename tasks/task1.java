@@ -1,3 +1,4 @@
+package tasks;
 public class task1 {
     public static void main(String[] args) {
         // Initialize the array

@@ -1,3 +1,4 @@
+package tasks;
 public class task3 {
 
     public static int findMax(int[] arr) {

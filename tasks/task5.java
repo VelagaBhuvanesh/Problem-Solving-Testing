@@ -1,3 +1,4 @@
+package tasks;
 public class task5 {
     public static void printAllPairs(int[] arr) {
         int n = arr.length;
