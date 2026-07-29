@@ -1,6 +1,6 @@
 import java.util.function.BiFunction;
 
-public class DiscountApp {
+public class practice2 {
     public static void main(String[] args) {
         
         BiFunction<Double, String, Double> calculateDiscount =     (price, type) -> type.equals("PREMIUM") ? price * 0.80 : price * 0.95;
